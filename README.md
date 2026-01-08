@@ -1,4 +1,5 @@
 # shoppingCartshopping-cart/
+```
 ├── backend/
 │   ├── manage.py
 │   ├── core/
@@ -41,3 +42,4 @@ accounts/
 ├── services.py     # business logic + algorithms
 ├── views.py        # thin HTTP layer
 ├── urls.py
+```
