@@ -14,7 +14,7 @@
 │   │   ├── models.py
 │   │   ├── views.py
 │   │   ├── serializers.py
-│   │   ├── services.py   👈 algorithms live here
+│   │   ├── services.py    algorithms live here
 │   │   ├── urls.py
 │   └── .env
 │
