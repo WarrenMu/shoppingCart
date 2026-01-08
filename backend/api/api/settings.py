@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,172 @@ INSTALLED_APPS = [
     'corsheaders',
     'shop',
     'accounts',
+    'rest_framework_simplejwt',
+    'rest_framework.authtoken',
+    
 ]
+
+# ===========================
+# JAZZMIN ADMIN CONFIG
+# ===========================
+
+# ============================
+# JAZZMIN CONFIGURATION
+# ============================
+
+INSTALLED_APPS = [
+    "jazzmin",                     # MUST BE FIRST
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    # your apps
+    "accounts",
+    "shop",
+]
+
+JAZZMIN_SETTINGS = {
+    # -------------------------
+    # Branding
+    # -------------------------
+    "site_title": "Shopping Cart Admin",
+    "site_header": "Shopping Cart",
+    "site_brand": "Shopping Cart",
+    "site_logo": None,
+    "login_logo": None,
+    "site_icon": None,
+
+    # -------------------------
+    # Layout
+    # -------------------------
+    "navigation_expanded": True,
+    "show_sidebar": True,
+    "order_with_respect_to": ["shop", "accounts"],
+    "hide_apps": [],
+
+    # -------------------------
+    # HIDE INTERNAL / NOISY MODELS
+    # -------------------------
+    "hide_models": [
+        # Shop internals
+        "shop.CartItem",
+        "shop.OrderItem",
+        "shop.WishlistItem",
+        "shop.ProductImage",
+        "shop.InventoryRecord",
+        "shop.SupplierProduct",
+
+        # Account internals
+        "accounts.UserSession",
+        "accounts.UserActivityLog",
+        "accounts.PasswordResetRequest",
+        "accounts.TwoFactorAuth",
+    ],
+
+    # -------------------------
+    # ICONS (minimal, readable)
+    # -------------------------
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+
+        "shop.Product": "fas fa-box",
+        "shop.Category": "fas fa-tags",
+        "shop.Order": "fas fa-receipt",
+        "shop.Payment": "fas fa-money-bill",
+        "shop.Discount": "fas fa-percent",
+        "shop.GiftCard": "fas fa-gift",
+        "shop.Supplier": "fas fa-truck",
+
+        "accounts.User": "fas fa-user",
+        "accounts.UserRole": "fas fa-id-badge",
+    },
+
+    # -------------------------
+    # DASHBOARD GROUPING (NO DUMP)
+    # -------------------------
+    "dashboard_links": [
+        {
+            "name": "🛒 Store",
+            "icon": "fas fa-store",
+            "models": [
+                "shop.Product",
+                "shop.Category",
+                "shop.Supplier",
+            ],
+        },
+        {
+            "name": "📦 Orders",
+            "icon": "fas fa-box",
+            "models": [
+                "shop.Order",
+                "shop.Payment",
+                "shop.Shipment",
+                "shop.ReturnRequest",
+            ],
+        },
+        {
+            "name": "📣 Marketing",
+            "icon": "fas fa-bullhorn",
+            "models": [
+                "shop.Discount",
+                "shop.GiftCard",
+                "shop.Review",
+            ],
+        },
+        {
+            "name": "👤 Users",
+            "icon": "fas fa-users",
+            "models": [
+                "accounts.User",
+                "accounts.UserRole",
+            ],
+        },
+    ],
+
+    # -------------------------
+    # TOP MENU (CLEAN)
+    # -------------------------
+    "topmenu_links": [
+        {"name": "Dashboard", "url": "admin:index", "permissions": ["auth.view_user"]},
+    ],
+
+    # -------------------------
+    # UI BEHAVIOR
+    # -------------------------
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+    },
+}
+
+# ============================
+# UI TWEAKS (EYE FRIENDLY)
+# ============================
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "flatly",                 # clean, light
+    "dark_mode_theme": None,           # disable dark (Jazzmin dark is noisy)
+
+    "navbar": "navbar-light",
+    "sidebar": "sidebar-light-primary",
+    "accent": "accent-primary",
+    "brand_colour": "navbar-light",
+
+    "sidebar_nav_small_text": True,
+    "sidebar_disable_expand": False,
+
+    "body_small_text": True,
+    "footer_small_text": True,
+
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": True,
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
